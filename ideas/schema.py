@@ -15,14 +15,18 @@ class CreateIdeaMutation(graphene.Mutation):
     idea = graphene.Field(IdeaType)
 
     @classmethod
-    def mutate(cls, root, info, content, visibility, user_id):
-        idea = Idea()
-        idea.content = content
-        idea.visibility = Idea.Visibility(visibility)
-        idea.user = User.objects.get(id=user_id)
-        idea.save()
-        
-        return CreateIdeaMutation(idea=idea)
+    def mutate(cls, root, info, content, visibility):
+        user = info.context.user
+        if not user.is_anonymous:
+            idea = Idea()
+            idea.content = content
+            idea.visibility = Idea.Visibility(visibility)
+            idea.user = User.objects.get(id=user.id)
+            idea.save()
+            
+            return CreateIdeaMutation(idea=idea)
+        else:
+            raise Exception('Not logged in!')
     
 class UpdateIdeaMutation(graphene.Mutation):
     class Arguments:
@@ -34,11 +38,16 @@ class UpdateIdeaMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, visibility, id):
-        idea = Idea.objects.get(pk=id)
-        idea.visibility = Idea.Visibility(visibility)
-        idea.save()
+        user = info.context.user
+        if not user.is_anonymous:
+            idea = Idea.objects.get(pk=id, user_id=user.id)
+            idea.visibility = Idea.Visibility(visibility)
+            idea.save()
+            
+            return UpdateIdeaMutation(idea=idea)
+        else:
+            raise Exception('Not logged in!')
         
-        return UpdateIdeaMutation(idea=idea)
 
 class Query(IdeaQuery, graphene.ObjectType):
     pass
