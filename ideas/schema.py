@@ -4,7 +4,7 @@ from .models import Idea
 from users.models import User
 from users.types import UserType
 
-class CreateIdea(graphene.Mutation):
+class CreateIdeaMutation(graphene.Mutation):
     class Arguments:
         # Mutation to create an idea
         content = graphene.String(required=True)
@@ -22,9 +22,9 @@ class CreateIdea(graphene.Mutation):
         idea.user = User.objects.get(id=user_id)
         idea.save()
         
-        return CreateIdea(idea=idea)
+        return CreateIdeaMutation(idea=idea)
     
-class UpdateIdea(graphene.Mutation):
+class UpdateIdeaMutation(graphene.Mutation):
     class Arguments:
         # Mutation to update an idea's visibility.
         visibility = graphene.String(required=True)
@@ -38,13 +38,13 @@ class UpdateIdea(graphene.Mutation):
         idea.visibility = Idea.Visibility(visibility)
         idea.save()
         
-        return UpdateIdea(idea=idea)
+        return UpdateIdeaMutation(idea=idea)
 
 class Query(IdeaQuery, graphene.ObjectType):
     pass
 
 class Mutation(graphene.ObjectType):
-    create_idea = CreateIdea.Field()
-    update_idea = UpdateIdea.Field()
+    create_idea = CreateIdeaMutation.Field()
+    update_idea = UpdateIdeaMutation.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
