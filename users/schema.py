@@ -50,6 +50,25 @@ class AcceptConnectionRequestMutation(graphene.Mutation):
             return AcceptConnectionRequestMutation(connection_request=connection_request)
         else:
             raise Exception('Not logged in!')
+        
+class DeclineConnectionRequestMutation(graphene.Mutation):
+    """Declines a connection request if you are the destination user.
+    """
+    class Arguments:
+        user_id = graphene.Int()
+        
+    connection_request = graphene.Field(ConnectionRequestType)
+    
+    @classmethod
+    def mutate(cls, root, info, user_id):
+        user = info.context.user
+        if not user.is_anonymous:
+            connection_request = ConnectionRequest.objects.get(to_user=user.id, from_user=user_id, accepted=False)
+            connection_request.delete()
+
+            return None
+        else:
+            raise Exception('Not logged in!')
     
 class Mutation(graphene.ObjectType):
     register = mutations.Register.Field()
@@ -63,6 +82,7 @@ class Mutation(graphene.ObjectType):
     
     create_connection_request = CreateConnectionRequestMutation.Field()
     accept_connection_request = AcceptConnectionRequestMutation.Field()
+    decline_connection_request = DeclineConnectionRequestMutation.Field()
     
 class Query(UserQuery, MeQuery, ConnectionsQuery, graphene.ObjectType):
     pass
