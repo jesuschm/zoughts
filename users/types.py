@@ -23,6 +23,8 @@ class ConnectionRequestType(DjangoObjectType):
         
 class ConnectionsQuery(graphene.ObjectType):
     requests = graphene.List(ConnectionRequestType)
+    followers = graphene.List(ConnectionRequestType)
+    follows = graphene.List(ConnectionRequestType)
     
     def resolve_requests(root, info, **kwargs):
         """Returns all user's requests pending of approval. 
@@ -32,3 +34,22 @@ class ConnectionsQuery(graphene.ObjectType):
             return ConnectionRequest.objects.filter(accepted=False, to_user=user.id).order_by('-request_date')
         else:
             raise Exception('Not logged in!')
+        
+    def resolve_followers(root, info, **kwargs):
+        """Returns all user's followers. 
+        """
+        user = info.context.user
+        if not user.is_anonymous:
+            return ConnectionRequest.objects.filter(accepted=True, to_user=user.id).order_by('-request_date')
+        else:
+            raise Exception('Not logged in!')
+    
+    def resolve_follows(root, info, **kwargs):
+        """Returns all user's follows. 
+        """
+        user = info.context.user
+        if not user.is_anonymous:
+            return ConnectionRequest.objects.filter(accepted=False, from_user=user.id).order_by('-request_date')
+        else:
+            raise Exception('Not logged in!')
+        
