@@ -5,4 +5,7 @@ from users.schema import schema as UserSchema
 class Query(IdeaSchema.Query, UserSchema.Query, graphene.ObjectType):
     pass
 
-schema = graphene.Schema(query=Query)
+class Mutation(IdeaSchema.Mutation, graphene.ObjectType):
+    pass
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
