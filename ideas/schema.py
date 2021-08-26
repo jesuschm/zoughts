@@ -18,7 +18,7 @@ class CreateIdea(graphene.Mutation):
     def mutate(cls, root, info, content, visibility, user_id):
         idea = Idea()
         idea.content = content
-        idea.visibility = visibility
+        idea.visibility = Idea.Visibility(visibility)
         idea.user = User.objects.get(id=user_id)
         idea.save()
         
