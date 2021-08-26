@@ -1,7 +1,7 @@
 import graphene
 from graphql_auth import mutations
 from .models import User, ConnectionRequest
-from .types import UserType, ConnectionRequestType
+from .types import UserType, ConnectionRequestType, ConnectionsQuery
 from graphql_auth.schema import UserQuery, MeQuery
 
 class CreateConnectionRequestMutation(graphene.Mutation):
@@ -18,7 +18,6 @@ class CreateConnectionRequestMutation(graphene.Mutation):
         if not user.is_anonymous:
             if user.id != user_id:            
                 connection_request = ConnectionRequest()
-                import pdb; pdb.set_trace()
                 connection_request.to_user = User.objects.get(pk=user_id)
                 connection_request.from_user = user
                 connection_request.save()
@@ -40,7 +39,7 @@ class Mutation(graphene.ObjectType):
     refresh_token = mutations.RefreshToken.Field()
     create_connection_request = CreateConnectionRequestMutation.Field()
     
-class Query(UserQuery, MeQuery, graphene.ObjectType):
+class Query(UserQuery, MeQuery, ConnectionsQuery, graphene.ObjectType):
     pass
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
