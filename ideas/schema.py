@@ -24,10 +24,27 @@ class CreateIdea(graphene.Mutation):
         
         return CreateIdea(idea=idea)
     
+class UpdateIdea(graphene.Mutation):
+    class Arguments:
+        # Mutation to update an idea's visibility.
+        visibility = graphene.String(required=True)
+        id = graphene.ID()
+
+    idea = graphene.Field(IdeaType)
+
+    @classmethod
+    def mutate(cls, root, info, visibility, id):
+        idea = Idea.objects.get(pk=id)
+        idea.visibility = Idea.Visibility(visibility)
+        idea.save()
+        
+        return UpdateIdea(idea=idea)
+
 class Query(IdeaQuery, graphene.ObjectType):
     pass
 
 class Mutation(graphene.ObjectType):
     create_idea = CreateIdea.Field()
+    update_idea = UpdateIdea.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
