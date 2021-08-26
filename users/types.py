@@ -49,7 +49,7 @@ class ConnectionsQuery(graphene.ObjectType):
         """
         user = info.context.user
         if not user.is_anonymous:
-            return ConnectionRequest.objects.filter(accepted=False, from_user=user.id).order_by('-request_date')
+            return ConnectionRequest.objects.filter(accepted=True, from_user=user.id).order_by('-request_date')
         else:
             raise Exception('Not logged in!')
         
