@@ -16,4 +16,4 @@ class Query(graphene.ObjectType):
     ideas = graphene.List(IdeaType)
     
     def resolve_ideas(root, info, **kwargs):
-        return Idea.objects.all()
+        return Idea.objects.all().order_by('-created_at')
