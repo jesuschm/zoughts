@@ -69,6 +69,45 @@ class DeclineConnectionRequestMutation(graphene.Mutation):
             return None
         else:
             raise Exception('Not logged in!')
+
+class DeleteFollowerMutation(graphene.Mutation):
+    """Delete a user as a follower.
+    """
+    class Arguments:
+        user_id = graphene.Int()
+        
+    connection_request = graphene.Field(ConnectionRequestType)
+    
+    @classmethod
+    def mutate(cls, root, info, user_id):
+        user = info.context.user
+        if not user.is_anonymous:
+            connection_request = ConnectionRequest.objects.get(from_user=user_id, to_user=user.id, accepted=True)
+            connection_request.delete()
+
+            return None
+        else:
+            raise Exception('Not logged in!')
+        
+        
+class DeleteFollowMutation(graphene.Mutation):
+    """Delete the follow to an user.
+    """
+    class Arguments:
+        user_id = graphene.Int()
+        
+    connection_request = graphene.Field(ConnectionRequestType)
+    
+    @classmethod
+    def mutate(cls, root, info, user_id):
+        user = info.context.user
+        if not user.is_anonymous:
+            connection_request = ConnectionRequest.objects.get(from_user=user.id, to_user=user_id, accepted=True)
+            connection_request.delete()
+
+            return None
+        else:
+            raise Exception('Not logged in!')
     
 class Mutation(graphene.ObjectType):
     register = mutations.Register.Field()
@@ -83,6 +122,8 @@ class Mutation(graphene.ObjectType):
     create_connection_request = CreateConnectionRequestMutation.Field()
     accept_connection_request = AcceptConnectionRequestMutation.Field()
     decline_connection_request = DeclineConnectionRequestMutation.Field()
+    delete_follower = DeleteFollowerMutation.Field()
+    delete_follow = DeleteFollowMutation.Field()
     
 class Query(UserQuery, MeQuery, ConnectionsQuery, graphene.ObjectType):
     pass
