@@ -18,7 +18,7 @@ class CreateConnectionRequestMutation(graphene.Mutation):
     def mutate(cls, root, info, user_id):
         user = info.context.user
         if not user.is_anonymous:
-            if user.id != user_id:            
+            if user.id != user_id:   
                 connection_request = ConnectionRequest()
                 connection_request.to_user = User.objects.get(pk=user_id)
                 connection_request.from_user = user
