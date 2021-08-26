@@ -1,5 +1,6 @@
 import graphene
 from graphql_auth import mutations
+from .types import UserType
 from graphql_auth.schema import UserQuery, MeQuery
 
 class AuthMutation(graphene.ObjectType):
