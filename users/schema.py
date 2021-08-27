@@ -1,8 +1,8 @@
 import graphene
 from graphql_auth import mutations
 from .models import User, ConnectionRequest
-from .types import UserType, ConnectionRequestType, ConnectionsQuery
-from graphql_auth.schema import UserQuery, MeQuery
+from .types import UserType, ConnectionRequestType, ConnectionQuery, UserQuery
+from graphql_auth.schema import MeQuery
 
 class CreateConnectionRequestMutation(graphene.Mutation):
     """Create a connection request from the logged user to another, specified through the param user_id
@@ -125,7 +125,7 @@ class Mutation(graphene.ObjectType):
     delete_follower = DeleteFollowerMutation.Field()
     delete_follow = DeleteFollowMutation.Field()
     
-class Query(UserQuery, MeQuery, ConnectionsQuery, graphene.ObjectType):
+class Query(MeQuery, UserQuery, ConnectionQuery, graphene.ObjectType):
     pass
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
