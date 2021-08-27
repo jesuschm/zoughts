@@ -1,3 +1,4 @@
+import graphene
 from graphene_django.types import DjangoObjectType
 from .models import User, ConnectionRequest
 
@@ -19,3 +20,36 @@ class ConnectionRequestType(DjangoObjectType):
             'request_date',
             'accepted'
         )
+        
+class ConnectionsQuery(graphene.ObjectType):
+    requests = graphene.List(ConnectionRequestType)
+    followers = graphene.List(ConnectionRequestType)
+    follows = graphene.List(ConnectionRequestType)
+    
+    def resolve_requests(root, info, **kwargs):
+        """Returns all user's requests pending of approval. 
+        """
+        user = info.context.user
+        if not user.is_anonymous:
+            return ConnectionRequest.objects.filter(accepted=False, to_user=user.id).order_by('-request_date')
+        else:
+            raise Exception('Not logged in!')
+        
+    def resolve_followers(root, info, **kwargs):
+        """Returns all user's followers. 
+        """
+        user = info.context.user
+        if not user.is_anonymous:
+            return ConnectionRequest.objects.filter(accepted=True, to_user=user.id).order_by('-request_date')
+        else:
+            raise Exception('Not logged in!')
+    
+    def resolve_follows(root, info, **kwargs):
+        """Returns all user's follows. 
+        """
+        user = info.context.user
+        if not user.is_anonymous:
+            return ConnectionRequest.objects.filter(accepted=True, from_user=user.id).order_by('-request_date')
+        else:
+            raise Exception('Not logged in!')
+        

@@ -13,7 +13,10 @@ class User(AbstractUser):
     EMAIL_FIELD = "email"
     
 class ConnectionRequest(models.Model):
-    from_user = models.ForeignKey(User, related_name = 'source', on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, related_name = 'target', on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, related_name = 'from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name = 'to_user', on_delete=models.CASCADE)
     request_date = models.DateTimeField(auto_now_add=True)
     accepted = models.BooleanField(default=False)
+    
+    class Meta:
+        unique_together = (('from_user', 'to_user'),)
