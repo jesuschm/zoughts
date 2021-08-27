@@ -89,3 +89,4 @@ class ConnectionQuery(graphene.ObjectType):
             return ConnectionRequest.objects.filter(accepted=True, from_user=user.id).order_by('-request_date')
         else:
             raise Exception('Not logged in!')
+        
