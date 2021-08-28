@@ -20,3 +20,19 @@ class ConnectionRequest(models.Model):
     
     class Meta:
         unique_together = (('from_user', 'to_user'),)
+        
+    @staticmethod
+    def is_followed(user_id, candidate_id):
+        rc = False
+        if ConnectionRequest.objects.filter(from_user= candidate_id, to_user=user_id, accepted=True):
+            rc = True
+            
+        return rc            
+    
+    @staticmethod
+    def is_follower(user_id, candidate_id):
+        rc = False
+        if ConnectionRequest.objects.filter(from_user= user_id, to_user=candidate_id, accepted=True):
+            rc = True
+            
+        return rc        
