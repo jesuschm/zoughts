@@ -1,12 +1,20 @@
-version: "3.7"
+version: '3'
 services:
   db:
-    image: "postgres:11.2"
-    container_name: "z_postgres"
-    ports:
-      - "5432:5432"
+    image: postgres:11.1
+  db-init:
+    build:
+      context: .
+      dockerfile: docker/db-init/Dockerfile
+    depends_on:
+      - db
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-volumes:
-  postgres_data:
-    name: z_postgres_data
+      - .:/zoughts
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
