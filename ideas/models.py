@@ -13,3 +13,7 @@ class Idea(models.Model):
     
     # An Idea is created by a user
     user = models.ForeignKey(to='users.User', related_name='idea', on_delete=models.CASCADE)
+    
+    @staticmethod
+    def get_self_ideas(my_user_id):
+        return Idea.objects.filter(user_id=my_user_id).order_by('-created_at')
