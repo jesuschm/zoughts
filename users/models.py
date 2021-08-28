@@ -22,6 +22,10 @@ class ConnectionRequest(models.Model):
         unique_together = (('from_user', 'to_user'),)
         
     @staticmethod
+    def get_follows_ids(user_id):
+        return ConnectionRequest.objects.filter(from_user=user_id, accepted=True).values_list('to_user', flat=True)
+    
+    @staticmethod
     def is_followed(user_id, candidate_id):
         rc = False
         if ConnectionRequest.objects.filter(from_user= candidate_id, to_user=user_id, accepted=True):

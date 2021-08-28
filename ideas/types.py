@@ -52,8 +52,10 @@ class Query(graphene.ObjectType):
         """
         user = info.context.user
         if not user.is_anonymous:
-            filter = Q(user_id = user.id) # Self ideas
-                                            # + follow user ideas public and protected (no privates)
+            # Self ideas + follow user ideas public and protected (no privates)
+            import pdb; pdb.set_trace()
+            follow_users_ids = ConnectionRequest.get_follows_ids(user.id)
+            filter = Q(user_id = user.id) | (Q(user_id__in=follow_users_ids) & ~Q(visibility=Idea.Visibility.private.value))
             return Idea.objects.filter(filter).order_by('-created_at')
         else:
             raise Exception('Not logged in!')
