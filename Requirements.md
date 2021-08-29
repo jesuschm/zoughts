@@ -1,4 +1,4 @@
-### Features
+### Done
 ✅ Un usuario puede registrarse introduciendo su email y eligiendo un nombre de usuario libre y una contraseña
 
 ✅ Un usuario debe ser capaz de logarse utilizando email y contraseña.
