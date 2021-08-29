@@ -49,6 +49,7 @@ To get a local copy up and running follow these simple steps.
 This is an example of how to list things you need to use the software and how to install them.
 * <a href="https://docs.python.org/3/using/index.html">Python 3</a>
 * <a href="https://packaging.python.org/tutorials/installing-packages/">Pip</a>
+* <a href="https://docs.docker.com/engine/install/">Docker engine</a>
 * <a href="https://docs.docker.com/compose/install/">Docker-compose</a>
   
 ### Installation
