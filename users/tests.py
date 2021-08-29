@@ -1,3 +1,11 @@
-from django.test import TestCase
+from graphene.test import Client
+from .schema import schema
 
-# Create your tests here.
+def test_hey():
+    client = Client(schema)
+    executed = client.execute('''{ hey }''')
+    assert executed == {
+        'data': {
+            'hey': 'hello!'
+        }
+    }
