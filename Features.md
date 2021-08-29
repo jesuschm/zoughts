@@ -1,6 +1,5 @@
 ### Features
 ✅ Un usuario puede registrarse introduciendo su email y eligiendo un nombre de usuario libre y una contraseña
-
 ✅ Un usuario debe ser capaz de logarse utilizando email y contraseña.
 ✅ Un usuario debe poder cambiar su contraseña.
 ✅ Un usuario debe poder restaurar su contraseña recibiendo un email con un magic link.
