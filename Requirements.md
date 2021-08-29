@@ -41,7 +41,7 @@
 
 - Un usuario debe recibir una notificación cada vez que un usuario al que sigue publica una idea nueva a la que tiene acceso (https://github.com/jazzband/django-push-notifications)
 
-### TODO:
+### TODO
 - Uso de servicios de terceros (envio de email, notificaciones push, etc...).
 - Tests
 - Custom Exceptions:
