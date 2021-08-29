@@ -72,11 +72,21 @@ This is an example of how to list things you need to use the software and how to
   ```
   
 ### Usage
-If you want to docker up only the postgresql container you can execute the following command:
-```sh
-  docker-compose -f docker-compose-dev.yml up -d
+For development, you have to change the settings of the projects. Specifically, the DATABASE HOST value like this:
+```py
+DATABASES = {
+    'default': {
+        ...
+        'HOST': 'localhost',
+        ...
+    }   
+}
 ```
-Then, just write
+Then up the postgresql database with the following command:
+```sh
+  docker-compose up -d bd
+```
+Last, just start the server executing:
 ```sh
   python manage.py runserver
 ```
