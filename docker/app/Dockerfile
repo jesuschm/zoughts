@@ -1,4 +1,4 @@
-FROM python:3.8.10
+FROM python:3.7.1
 COPY requirements.txt /zoughts/
 WORKDIR /zoughts/
 RUN pip install -r requirements.txt

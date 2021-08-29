@@ -1,20 +1,25 @@
-version: '3'
+version: '3.8'
+
 services:
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/zoughts/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
   db:
     image: postgres:11.1
-  db-init:
-    build:
-      context: .
-      dockerfile: docker/db-init/Dockerfile
-    depends_on:
-      - db
-  app:
-    build:
-      context: .
-      dockerfile: docker/app/Dockerfile
-    volumes:
-      - .:/zoughts
+    container_name: "z_postgres"
     ports:
-      - "8000:8000"
-    depends_on:
-      - db
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
+    name: z_postgres_data
