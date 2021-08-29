@@ -57,7 +57,7 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/jesuschmn/zoughts.git
    ```
-2. <a href="https://docs.python.org/3/using/index.html">Create and activate the virtual environment</a>  
+2. Create and activate the virtual environment (<a href="https://docs.python.org/3/using/index.html">info</a>)
 3. Install requirements
   ```sh
     pip install -r requirements.txt
