@@ -57,22 +57,24 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/jesuschmn/zoughts.git
    ```
-2. Create and activate the virtual environment (<a href="https://docs.python.org/3/using/index.html">info</a>)
-3. Install requirements
-  ```sh
-    pip install -r requirements.txt
-  ```
-4. Docker compose
+2. Docker compose
   ```sh
     docker-compose up -d
   ```
-5. [Optional] Create a superuser
+3. [Optional] Create a superuser
   ```sh
   docker exec -it container_id python manage.py createsuperuser
   ```
   
 ### Usage
-For development, you have to change the settings of the projects. Specifically, the DATABASE HOST value like this:
+For development, with the repo cloned, you have to do the following:
+
+1. Create and activate the virtual environment (<a href="https://docs.python.org/3/using/index.html">info</a>)
+2. Install requirements
+  ```sh
+    pip install -r requirements.txt
+  ```
+3. Change the settings of the projects. Specifically, the DATABASE HOST value like this:
 ```py
 DATABASES = {
     'default': {
@@ -82,11 +84,11 @@ DATABASES = {
     }   
 }
 ```
-Then up the postgresql database with the following command:
+4. Then up the postgresql database with the following command:
 ```sh
   docker-compose up -d bd
 ```
-Last, just start the server executing:
+5. Last, just start the server executing:
 ```sh
   python manage.py runserver
 ```
