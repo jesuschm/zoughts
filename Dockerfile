@@ -19,5 +19,3 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
-
-# CMD [ "./docker/db-init/wait-for-postgres.sh", "db", "./docker/db-init/startup.sh" ]
