@@ -43,7 +43,7 @@ Also you can follow another users and see their protected ideas (if the other us
 
 This project is built using Django, Graphql and PostgreSQL.
 
-There is a Postman collection with all the queries and mutations available [Zoughts.postman_collection.json](Zoughts.postman_collection.json)
+There is a Postman collection with all the queries and mutations available ([Zoughts.postman_collection.json](here!)).
 
 <!-- GETTING STARTED -->
 ## Getting Started
