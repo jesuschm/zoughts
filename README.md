@@ -43,6 +43,8 @@ Also you can follow another users and see their protected ideas (if the other us
 
 This project is built using Django, Graphql and PostgreSQL.
 
+To see the list of features done and which ones are still in develop you can read the following file: [Requirements.md](Requirements.md)
+
 There is a Postman collection with all the queries and mutations available ([here!](Zoughts.postman_collection.json)).
 
 <!-- GETTING STARTED -->
@@ -73,7 +75,6 @@ This is an example of how to list things you need to use the software and how to
   docker exec -it container_id python manage.py createsuperuser
   ```
   
-### Usage
 For development, with the repo cloned, you have to do the following:
 
 1. Create and activate the virtual environment (<a href="https://docs.python.org/3/using/index.html">info</a>)
@@ -100,6 +101,14 @@ DATABASES = {
   python manage.py runserver
 ```
 And start coding and chill.
+
+### Usage
+To use the API you have to:
+1. Register your self
+2. Verify your account
+
+Then you can use the token got to access to the rest of the API (create/list ideas, search users and request connections, restore your password, etc.).
+
 <!-- CONTACT -->
 ## Contact
 
