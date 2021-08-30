@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 Zoughts is a revolutionary project. You can publish any idea you have in your mind. But you have also 144 characteres. Write carefully.
-Also you can follow another users and see their protected ideas (if the other user accepts your connection request).
+Also you can follow another users and see their ones (if you are not friends, only public ideas can be read).
 
 This project is built using Django, Graphql and PostgreSQL.
 
