@@ -101,7 +101,7 @@ And start coding and chill.
 
 ### Usage
 To use the API you have to:
-1. Register your self
+1. Register an user.
 2. Verify your account
 
 Then you can use the token got to access to the rest of the API (create/list ideas, search users and request connections, restore your password, etc.).
