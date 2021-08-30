@@ -96,7 +96,7 @@ DATABASES = {
 And start coding and chill.
 
 ## Requirements
-To see the list of requirements done and which ones are still in develop you can read the following file: [jesuschm/zoughts/blob/develop/Requirements.md](Requirements.md)
+To see the list of features done and which ones are still in develop you can read the following file: [Requirements.md](Requirements.md)
 <!-- CONTACT -->
 ## Contact
 
