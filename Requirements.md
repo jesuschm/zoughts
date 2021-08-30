@@ -1,4 +1,4 @@
-### Done
+## Done
 - [x] Un usuario puede registrarse introduciendo su email y eligiendo un nombre de usuario libre y una contraseña
 - [x] Un usuario debe ser capaz de logarse utilizando email y contraseña.
 - [x] Un usuario debe poder cambiar su contraseña.
@@ -21,7 +21,7 @@
 - [x] El proyecto debe incluir un README.md con instrucciones para levantar el entorno de desarrollo y todas las consideraciones que se crean oportunas.
 - [ ] Un usuario debe recibir una notificación cada vez que un usuario al que sigue publica una idea nueva a la que tiene acceso (https://github.com/jazzband/django-push-notifications)
 
-### TODO
+## TODO
 - [ ] Uso de servicios de terceros (envio de email, notificaciones push, etc...).
 - [ ] Tests
 - [ ] Custom Exceptions:
