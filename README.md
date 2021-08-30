@@ -38,7 +38,12 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+Zoughts is a revolutionary project. You can publish any idea you have in your mind. But you have also 144 characteres. Write carefully.
+Also you can follow another users and see their protected ideas (if the other user accepts your connection request).
 
+This project is built using Django, Graphql and PostgreSQL.
+
+There is a Postman collection with all the queries and mutations available.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -95,9 +100,6 @@ DATABASES = {
   python manage.py runserver
 ```
 And start coding and chill.
-
-## Requirements
-To see the list of features done and which ones are still in develop you can read the following file: [Requirements.md](Requirements.md)
 <!-- CONTACT -->
 ## Contact
 
