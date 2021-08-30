@@ -95,10 +95,13 @@ DATABASES = {
 ```
 And start coding and chill.
 
+## Requirements
+To see the list of requirements done and which ones are still in develop you can read the following file: [jesuschm/zoughts/blob/develop/Requirements.md](Requirements.md)
 <!-- CONTACT -->
 ## Contact
 
 Jesús Chacón - <a href="https://twitter.com/jchaconmontero">Twitter</a> - jesuschaconmontero@gmail.com
+
 Project Link: [https://github.com/jesuschmn/zoughts](https://github.com/jesuschmn/zoughts)
 
 <!-- MARKDOWN LINKS & IMAGES -->
