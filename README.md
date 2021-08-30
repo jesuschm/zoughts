@@ -30,6 +30,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#requirements">Requirements</a></li>
   </ol>
 </details>
 
@@ -37,7 +38,12 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+Zoughts is a revolutionary project. You can publish any idea you have in your mind. But you have also 144 characteres. Write carefully.
+Also you can follow another users and see their protected ideas (if the other user accepts your connection request).
 
+This project is built using Django, Graphql and PostgreSQL.
+
+There is a Postman collection with all the queries and mutations available.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -49,6 +55,7 @@ To get a local copy up and running follow these simple steps.
 This is an example of how to list things you need to use the software and how to install them.
 * <a href="https://docs.python.org/3/using/index.html">Python 3</a>
 * <a href="https://packaging.python.org/tutorials/installing-packages/">Pip</a>
+* <a href="https://docs.docker.com/engine/install/">Docker engine</a>
 * <a href="https://docs.docker.com/compose/install/">Docker-compose</a>
   
 ### Installation
@@ -93,11 +100,11 @@ DATABASES = {
   python manage.py runserver
 ```
 And start coding and chill.
-
 <!-- CONTACT -->
 ## Contact
 
 Jesús Chacón - <a href="https://twitter.com/jchaconmontero">Twitter</a> - jesuschaconmontero@gmail.com
+
 Project Link: [https://github.com/jesuschmn/zoughts](https://github.com/jesuschmn/zoughts)
 
 <!-- MARKDOWN LINKS & IMAGES -->
