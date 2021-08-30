@@ -1,0 +1,605 @@
+{
+	"info": {
+		"_postman_id": "6d237bfd-44ed-4e5d-a921-85810b3c55bf",
+		"name": "Zoughts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Update user account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  updateAccount(\n    lastName: \"New user last name\"\n  ) {\n    success,\n    errors  \n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  tokenAuth(email: \"admin@admin.com\", password: \"admin\") {\n    success,\n    errors,\n    unarchiving,\n    token,\n    unarchiving,\n    user {\n      pk,\n      username,\n      email\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n  allUsers (username:\"\"){\n    pk,\n    username,\n    firstName,\n    email,\n    isActive,\n    archived,\n    verified,\n    secondaryEmail\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n    user(pk: 1){\n        pk, \n        username,\n        email\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send password reset email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\n    sendPasswordResetEmail(\n        email: \"c@c.com\"\n    ) {\n        success\n        errors\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\n    passwordReset(\n        token: \"eyJ1c2VybmFtZSI6ImNAYy5jb20iLCJhY3Rpb24iOiJwYXNzd29yZF9yZXNldCJ9:1mIa3G:qIp24zDws4DtlRidAQr87duNechB3GWbs3yHysJnIbI\",\n        newPassword1: \"toortoortoor\",\n        newPassword2: \"toortoortoor\"){\n            success\n            errors\n        }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\n    refreshToken(\n        refreshToken: \"1f5ddf684116c481aabd5584b0b71b5a2ab5d2dc\"\n    ){\n        success\n        errors\n        payload\n        token\n        refreshToken\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  register(\n    email: \"maria@gmail.com\",\n    username: \"mamiper\",\n    password1: \"adminadmin\",\n    password2: \"adminadmin\",\n  ) {\n    success,\n    errors,\n    token,\n    refreshToken\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  verifyAccount(token: \"eyJ1c2VybmFtZSI6Im5ld191c2VyIiwiYWN0aW9uIjoiYWN0aXZhdGlvbiJ9:1mIaJa:Q3ygy_p4KRKU7FmujCiQOfIBTlayfByLj-M0wDBD_n0\") {\n    success,\n    errors\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create connection request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n create_connection_request:createConnectionRequest(userId : 3) {\n  connectionRequest {\n   id,\n   fromUser{\n       id,\n       email\n   },\n   toUser{\n       id,\n       email\n   },\n   requestDate,\n   accepted\n  }\n }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get connection requests",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n    requests{\n        id,\n        fromUser{\n            id,\n            email\n        },\n        toUser{\n            id,\n            email\n        },\n        requestDate,\n        accepted\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept connection request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n accept_connection_request:acceptConnectionRequest(userId:1) {\n  connectionRequest {\n   id,\n        fromUser{\n            id,\n            email\n        },\n        toUser{\n            id,\n            email\n        },\n        requestDate,\n        accepted\n  }\n }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decline connection request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\n    decline_connection_request:declineConnectionRequest(userId:2) {\n    connectionRequest {\n        id,\n            fromUser{\n                id,\n                email\n            },\n            toUser{\n                id,\n                email\n            },\n            requestDate,\n            accepted\n    }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List followers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n    followers{\n        fromUser{\n            id,\n            email,\n            username\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List follows",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n    follows{\n        toUser{\n            id,\n            email,\n            username,\n        },\n        accepted\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete follower",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\n    delete_follower:deleteFollower(userId:2){\n        connectionRequest {\n            fromUser{ \n                id,\n                email,\n                username\n            }\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete follow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\n    delete_follow:deleteFollow(userId:3){\n        connectionRequest {\n            fromUser{ \n                id,\n                email,\n                username\n            }\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ideas",
+			"item": [
+				{
+					"name": "Ideas timeline",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "JWT {{token}}"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n  timeline {\n    id\n    content\n    createdAt\n    visibility\n    user{\n      id,\n      email\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create idea",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n create_idea:createIdea(content:\"My first public idea. By Maria.\", visibility:\"Public\") {\n  idea {\n   id,\n   content,\n   visibility,\n   user{\n      id,\n      email\n    }\n  }\n }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update idea",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n update_idea:updateIdea(visibility :\"Private\", id:10) {\n  idea {\n   id,\n   content,\n   visibility,\n   user {\n       id,\n       email\n   }\n  }\n }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User ideas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n    userIdeas(userId:1){ \n        id\n        content\n        visibility\n        createdAt\n        user{\n        id,\n        email\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get self ideas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\n  selfIdeas {\n    id\n    content\n    createdAt\n    visibility\n    user{\n      id,\n      email\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Idea (default visibility)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n create_idea:createIdea(content:\"Default visibility idea\") {\n  idea {\n   id,\n   content,\n   visibility,\n   user{\n      id,\n      email\n    }\n  }\n }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql_url}}",
+							"host": [
+								"{{graphql_url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

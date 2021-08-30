@@ -30,6 +30,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#requirements">Requirements</a></li>
   </ol>
 </details>
 
@@ -37,7 +38,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+Example project built using Django, Graphql and PostgreSQL.
 
+To see the list of features done and which ones are still in develop you can read the following file: [Requirements.md](Requirements.md)
+
+There is a Postman collection with all the queries and mutations available ([here!](Zoughts.postman_collection.json)).
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -49,6 +54,7 @@ To get a local copy up and running follow these simple steps.
 This is an example of how to list things you need to use the software and how to install them.
 * <a href="https://docs.python.org/3/using/index.html">Python 3</a>
 * <a href="https://packaging.python.org/tutorials/installing-packages/">Pip</a>
+* <a href="https://docs.docker.com/engine/install/">Docker engine</a>
 * <a href="https://docs.docker.com/compose/install/">Docker-compose</a>
   
 ### Installation
@@ -66,7 +72,6 @@ This is an example of how to list things you need to use the software and how to
   docker exec -it container_id python manage.py createsuperuser
   ```
   
-### Usage
 For development, with the repo cloned, you have to do the following:
 
 1. Create and activate the virtual environment (<a href="https://docs.python.org/3/using/index.html">info</a>)
@@ -94,10 +99,18 @@ DATABASES = {
 ```
 And start coding and chill.
 
+### Usage
+To use the API you have to:
+1. Register an user.
+2. Verify your account
+
+Then you can use the token got to access to the rest of the API (create/list ideas, search users and request connections, restore your password, etc.).
+
 <!-- CONTACT -->
 ## Contact
 
 Jesús Chacón - <a href="https://twitter.com/jchaconmontero">Twitter</a> - jesuschaconmontero@gmail.com
+
 Project Link: [https://github.com/jesuschmn/zoughts](https://github.com/jesuschmn/zoughts)
 
 <!-- MARKDOWN LINKS & IMAGES -->
