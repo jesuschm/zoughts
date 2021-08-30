@@ -30,6 +30,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#requirements">Requirements</a></li>
   </ol>
 </details>
 
